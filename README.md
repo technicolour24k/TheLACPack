@@ -8,9 +8,16 @@ To use **TheLACPack**, follow these steps:
 2. Place it in your `AshitaV4/config/addons/luashitacast/` folder.
 
 Your folder structure should look like this:
+```txt
+Ashita V4/
+- config/
+-- addons/
+--- luashitacast/
+---- You_YourID/
+----- SMN.lua
+---- bootstrap.lua
 
-Ashita V4/ ├── config/ │ ├── addons/ │ │ ├── luashitacast/ │ │ │ ├── bootstrap.lua │ │ │ ├── Zoku_2/ │ │ │ │ ├── SMN.lua │ │ │ │ ├── WAR.lua
-
+```
 
 Then, at the top of your **Luashitacast** profile file (e.g., `SMN.lua`), add the following line:
 
