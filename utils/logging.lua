@@ -1,4 +1,4 @@
-require('helpers')
+-- local helpers = gFunc.LoadFile("helpers.lua")
 
 --[[
     Various logging options
