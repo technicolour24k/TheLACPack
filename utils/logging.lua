@@ -23,3 +23,5 @@ tlp.logging.debug = function(msg,col)
         gFunc.Echo(colour, "[Debug] "..msg)
     end
 end
+
+gFunc.Echo(2, "Logging.lua loaded successfully!")
