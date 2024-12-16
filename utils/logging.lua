@@ -1,4 +1,4 @@
-require('utils/helpers')
+require('helpers')
 
 --[[
     Various logging options
