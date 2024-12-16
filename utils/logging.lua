@@ -24,4 +24,6 @@ tlp.logging.debug = function(msg,col)
     end
 end
 
-gFunc.Echo(2, "Logging.lua loaded successfully!")
+if tlp.logging then
+    gFunc.Echo(1, "[TLP Load] TheLACPack Logging loaded successfully.")
+end
