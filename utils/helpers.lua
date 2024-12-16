@@ -21,3 +21,8 @@ tlp.helpers.buffActive = function(buff)
         return false
     end
 end
+
+
+if tlp.helpers then
+    gFunc.Echo(143, "[TLP Load] TheLACPack Helpers loaded successfully.")
+end

@@ -25,5 +25,5 @@ tlp.logging.debug = function(msg,col)
 end
 
 if tlp.logging then
-    gFunc.Echo(1, "[TLP Load] TheLACPack Logging loaded successfully.")
+    gFunc.Echo(143, "[TLP Load] TheLACPack Logging loaded successfully.")
 end
