@@ -6,3 +6,6 @@ To use, download the bootstrap.lua file and place it in your AshitaV4/config/lua
 --- addons
 ---- luashitacast
 ----- bootstrap.lua
+
+
+Then, at the top of your Luashitacast file, add: `gFunc.LoadFile("../bootstrap.lua")`
