@@ -1,11 +1,19 @@
 # TheLACPack
-To use, download the bootstrap.lua file and place it in your AshitaV4/config/luashitacast/ folder, as per the below:
 
-- Ashita V4
--- config
---- addons
----- luashitacast
------ bootstrap.lua
+## Installation Instructions
+
+To use **TheLACPack**, follow these steps:
+
+1. Download the `bootstrap.lua` file from this repository.
+2. Place it in your `AshitaV4/config/addons/luashitacast/` folder.
+
+Your folder structure should look like this:
+
+Ashita V4/ ├── config/ │ ├── addons/ │ │ ├── luashitacast/ │ │ │ ├── bootstrap.lua │ │ │ ├── Zoku_2/ │ │ │ │ ├── SMN.lua │ │ │ │ ├── WAR.lua
 
 
-Then, at the top of your Luashitacast file, add: `gFunc.LoadFile("../bootstrap.lua")`
+Then, at the top of your **Luashitacast** profile file (e.g., `SMN.lua`), add the following line:
+
+```lua
+gFunc.LoadFile("../bootstrap.lua")
+```
