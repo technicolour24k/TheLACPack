@@ -67,6 +67,6 @@ end
 
 if not tlp.settings.user.silentLoad then
     if tlp.logging then
-        tlp.logging.info"[TLP Load] TheLACPack Logging loaded successfully.")
+        tlp.logging.info("[TLP Load] TheLACPack Logging loaded successfully.")
     end
 end
