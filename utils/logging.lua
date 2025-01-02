@@ -1,5 +1,3 @@
--- local helpers = gFunc.LoadFile("helpers.lua")
-
 --[[
     Various logging options
 ]]--
@@ -67,8 +65,8 @@ tlp.logging.debug = function(msg,col)
     end
 end
 
-if tlp.logging then
-    if not tlp.settings.user.silentLoad then
+if not tlp.settings.user.silentLoad then
+    if tlp.logging then
         gFunc.Echo(143, "[TLP Load] TheLACPack Logging loaded successfully.")
     end
 end

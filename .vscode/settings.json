@@ -1,0 +1,8 @@
+{
+    "Lua.diagnostics.globals": [
+        "gFunc",
+        "gSettings",
+        "gData",
+        "AshitaCore"
+    ]
+}
