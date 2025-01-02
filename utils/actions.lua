@@ -95,6 +95,6 @@ end
 
 if not tlp.settings.user.silentLoad then
     if tlp.xi.actions then
-        gFunc.Echo(143, "[TLP.xi Load] TheLACPack Action Utilities loaded successfully.")
+        gFunc.Echo(143, "[TLP Load] TheLACPack Action Utilities loaded successfully.")
     end
 end
