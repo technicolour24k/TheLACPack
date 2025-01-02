@@ -45,7 +45,7 @@ tlp.xi.world.clearStatuses = function()
     end
 end
 
-if not tlp.xi.settings.user.silentLoad then
+if not tlp.settings.user.silentLoad then
     if tlp.xi.world then
         gFunc.Echo(143, "[TLP.xi Load] TheLACPack Game World Utilities loaded successfully.")
     end

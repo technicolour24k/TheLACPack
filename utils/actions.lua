@@ -93,7 +93,7 @@ tlp.xi.actions.cancelBuff = function(spell, castTime, fastCastAmount, buff, skil
     executeCancel(actualBuff, delay, buff and "Buff Parameter Sent" or "Spell")
 end
 
-if not tlp.xi.settings.user.silentLoad then
+if not tlp.settings.user.silentLoad then
     if tlp.xi.actions then
         gFunc.Echo(143, "[TLP.xi Load] TheLACPack Action Utilities loaded successfully.")
     end
