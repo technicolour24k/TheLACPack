@@ -12,85 +12,85 @@ tlp.actions.spellContains = function(spell, contains)
     return string.find(spell:lower(), contains:lower()) ~= nil
 end
 
--- tlp.actions.enemyImmunityCheck = function(mob, spell)
---     local immunities = tlp.data.enemyImmunities[mob]
+tlp.actions.enemyImmunityCheck = function(mob, spell)
+    local immunities = tlp.data.enemyImmunities[mob]
 
---     -- No immunities defined for this mob
---     if not immunities then
---         return
---     end
+    -- No immunities defined for this mob
+    if not immunities then
+        return
+    end
 
---     -- Check if the spell matches any immunity
---     for _, immunity in ipairs(immunities) do
---         if tlp.utils.spellContains(spell, immunity) then
---             tlp.logging.info(string.format("[TLP] %s is immune to %s. Cancelling spell.", mob, immunity))
---             gFunc.CancelAction()
---             return
---         end
---     end
--- end
+    -- Check if the spell matches any immunity
+    for _, immunity in ipairs(immunities) do
+        if tlp.utils.spellContains(spell, immunity) then
+            tlp.logging.info(string.format("[TLP] %s is immune to %s. Cancelling spell.", mob, immunity))
+            gFunc.CancelAction()
+            return
+        end
+    end
+end
 
 
 -- Helper function to calculate delay
--- local function calculateDelay(castTime, fastCastAmount)
---     if fastCastAmount <= 0 then
---         return castTime * (1-tlp.settings.user.cancellationMargin) -- No Fast Cast, so cancel at the end of the cast time
---     end
+local function calculateDelay(castTime, fastCastAmount)
+    if fastCastAmount <= 0 then
+        return castTime * (1-tlp.settings.user.cancellationMargin) -- No Fast Cast, so cancel at the end of the cast time
+    end
 
---     local fastCastMultiplier = ((100 - fastCastAmount) / 100) * 0.3
---     local delayToCancel = castTime - (castTime * fastCastMultiplier)
---     delayToCancel = delayToCancel - (castTime * tlp.settings.user.cancellationMargin)
+    local fastCastMultiplier = ((100 - fastCastAmount) / 100) * 0.3
+    local delayToCancel = castTime - (castTime * fastCastMultiplier)
+    delayToCancel = delayToCancel - (castTime * tlp.settings.user.cancellationMargin)
 
---     return math.max(0, delayToCancel) -- Make sure we get the highest cancellation delay
--- end
+    return math.max(0, delayToCancel) -- Make sure we get the highest cancellation delay
+end
 
 
--- -- Helper function for logging Fast Cast information
--- local function logFastCastInfo(spell, castTime, fastCastAmount, delay, buff)
---         tlp.logging.debug(string.format(
---             "[FastCastInfo] Spell: %s, Base Cast Time: %.2fs, Fast Cast: %d%%, Delay to Cancel: %.2fs, Buff: %s",
---             spell, castTime/1000, fastCastAmount, delay, buff
---         ))
--- end
+-- Helper function for logging Fast Cast information
+local function logFastCastInfo(spell, castTime, fastCastAmount, delay, buff)
+        tlp.logging.debug(string.format(
+            "[FastCastInfo] Spell: %s, Base Cast Time: %.2fs, Fast Cast: %d%%, Delay to Cancel: %.2fs, Buff: %s",
+            spell, castTime/1000, fastCastAmount, delay, buff
+        ))
+end
 
--- -- Helper function to execute cancel command
--- local function executeCancel(spellOrBuff, delay, typeInfo)
---     tlp.utils.wait(delay)
---     tlp.world.sendCommand('/cancel ' .. spellOrBuff)
---     tlp.logging.debug(string.format("Cancelled %s after %.2fs [%s]", spellOrBuff, delay, typeInfo))
--- end
+-- Helper function to execute cancel command
+local function executeCancel(spellOrBuff, delay, typeInfo)
+    tlp.utils.wait(delay)
+    tlp.world.sendCommand('/cancel ' .. spellOrBuff)
+    tlp.logging.debug(string.format("Cancelled %s after %.2fs [%s]", spellOrBuff, delay, typeInfo))
+end
 
 -- Main function
--- tlp.actions.cancelBuff = function(spell, castTime, fastCastAmount, buff, skill)
---     fastCastAmount = fastCastAmount or gSettings.FastCast
---     -- Validate inputs
---     if not spell or not castTime or not fastCastAmount then
---         tlp.logging.error("Invalid parameters passed to cancelBuff function.")
---         return
---     end
+tlp.actions.cancelBuff = function(spell, castTime, fastCastAmount, buff, skill)
+    fastCastAmount = fastCastAmount or gSettings.FastCast
+    -- Validate inputs
+    if not spell or not castTime or not fastCastAmount then
+        tlp.logging.error("Invalid parameters passed to cancelBuff function.")
+        return
+    end
 
---     -- Fetch the user-defined autoCancelList
---     local autoCancelList = tlp.settings.user.autoCancelList
---     if not autoCancelList or not tlp.utils.itemInArray(autoCancelList, spell) then
---         return
---     end
+    -- Fetch the user-defined autoCancelList
+    local autoCancelList = tlp.settings.user.autoCancelList
+    if not autoCancelList or not tlp.utils.itemInArray(autoCancelList, spell) then
+        return
+    end
 
---     -- Determine the actual buff to cancel
---     local actualBuff = buff or spell
+    -- Determine the actual buff to cancel
+    local actualBuff = buff or spell
 
---     -- Calculate delay based on Fast Cast and skill type
---     local delay = 0
---     if skill ~= "JobAbility" and skill ~= "Jig" then
---         delay = calculateDelay(castTime, fastCastAmount)/1000
---     end
+    -- Calculate delay based on Fast Cast and skill type
+    local delay = 0
+    if skill ~= "JobAbility" and skill ~= "Jig" then
+        delay = calculateDelay(castTime, fastCastAmount)/1000
+    end
 
---     -- Log Fast Cast information
---     logFastCastInfo(spell, castTime, fastCastAmount, delay)
+    -- Log Fast Cast information
+    logFastCastInfo(spell, castTime, fastCastAmount, delay)
 
 
---     -- Execute cancel command
---     executeCancel(actualBuff, delay, buff and "Buff Parameter Sent" or "Spell")
--- end
+    -- Execute cancel command
+    executeCancel(actualBuff, delay, buff and "Buff Parameter Sent" or "Spell")
+end
 
 if not tlp.settings.user.silentLoad then
     if tlp.actions then
