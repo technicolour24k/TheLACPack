@@ -32,33 +32,33 @@ end
 
 
 -- Helper function to calculate delay
-local function calculateDelay(castTime, fastCastAmount)
-    if fastCastAmount <= 0 then
-        return castTime * (1-tlp.settings.user.cancellationMargin) -- No Fast Cast, so cancel at the end of the cast time
-    end
+-- local function calculateDelay(castTime, fastCastAmount)
+--     if fastCastAmount <= 0 then
+--         return castTime * (1-tlp.settings.user.cancellationMargin) -- No Fast Cast, so cancel at the end of the cast time
+--     end
 
-    local fastCastMultiplier = ((100 - fastCastAmount) / 100) * 0.3
-    local delayToCancel = castTime - (castTime * fastCastMultiplier)
-    delayToCancel = delayToCancel - (castTime * tlp.settings.user.cancellationMargin)
+--     local fastCastMultiplier = ((100 - fastCastAmount) / 100) * 0.3
+--     local delayToCancel = castTime - (castTime * fastCastMultiplier)
+--     delayToCancel = delayToCancel - (castTime * tlp.settings.user.cancellationMargin)
 
-    return math.max(0, delayToCancel) -- Make sure we get the highest cancellation delay
-end
+--     return math.max(0, delayToCancel) -- Make sure we get the highest cancellation delay
+-- end
 
 
--- Helper function for logging Fast Cast information
-local function logFastCastInfo(spell, castTime, fastCastAmount, delay, buff)
-        tlp.logging.debug(string.format(
-            "[FastCastInfo] Spell: %s, Base Cast Time: %.2fs, Fast Cast: %d%%, Delay to Cancel: %.2fs, Buff: %s",
-            spell, castTime/1000, fastCastAmount, delay, buff
-        ))
-end
+-- -- Helper function for logging Fast Cast information
+-- local function logFastCastInfo(spell, castTime, fastCastAmount, delay, buff)
+--         tlp.logging.debug(string.format(
+--             "[FastCastInfo] Spell: %s, Base Cast Time: %.2fs, Fast Cast: %d%%, Delay to Cancel: %.2fs, Buff: %s",
+--             spell, castTime/1000, fastCastAmount, delay, buff
+--         ))
+-- end
 
--- Helper function to execute cancel command
-local function executeCancel(spellOrBuff, delay, typeInfo)
-    tlp.utils.wait(delay)
-    tlp.world.sendCommand('/cancel ' .. spellOrBuff)
-    tlp.logging.debug(string.format("Cancelled %s after %.2fs [%s]", spellOrBuff, delay, typeInfo))
-end
+-- -- Helper function to execute cancel command
+-- local function executeCancel(spellOrBuff, delay, typeInfo)
+--     tlp.utils.wait(delay)
+--     tlp.world.sendCommand('/cancel ' .. spellOrBuff)
+--     tlp.logging.debug(string.format("Cancelled %s after %.2fs [%s]", spellOrBuff, delay, typeInfo))
+-- end
 
 -- Main function
 -- tlp.actions.cancelBuff = function(spell, castTime, fastCastAmount, buff, skill)
