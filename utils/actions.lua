@@ -61,36 +61,36 @@ local function executeCancel(spellOrBuff, delay, typeInfo)
 end
 
 -- Main function
-tlp.actions.cancelBuff = function(spell, castTime, fastCastAmount, buff, skill)
-    fastCastAmount = fastCastAmount or gSettings.FastCast
-    -- Validate inputs
-    if not spell or not castTime or not fastCastAmount then
-        tlp.logging.error("Invalid parameters passed to cancelBuff function.")
-        return
-    end
+-- tlp.actions.cancelBuff = function(spell, castTime, fastCastAmount, buff, skill)
+--     fastCastAmount = fastCastAmount or gSettings.FastCast
+--     -- Validate inputs
+--     if not spell or not castTime or not fastCastAmount then
+--         tlp.logging.error("Invalid parameters passed to cancelBuff function.")
+--         return
+--     end
 
-    -- Fetch the user-defined autoCancelList
-    local autoCancelList = tlp.settings.user.autoCancelList
-    if not autoCancelList or not tlp.utils.itemInArray(autoCancelList, spell) then
-        return
-    end
+--     -- Fetch the user-defined autoCancelList
+--     local autoCancelList = tlp.settings.user.autoCancelList
+--     if not autoCancelList or not tlp.utils.itemInArray(autoCancelList, spell) then
+--         return
+--     end
 
-    -- Determine the actual buff to cancel
-    local actualBuff = buff or spell
+--     -- Determine the actual buff to cancel
+--     local actualBuff = buff or spell
 
-    -- Calculate delay based on Fast Cast and skill type
-    local delay = 0
-    if skill ~= "JobAbility" and skill ~= "Jig" then
-        delay = calculateDelay(castTime, fastCastAmount)/1000
-    end
+--     -- Calculate delay based on Fast Cast and skill type
+--     local delay = 0
+--     if skill ~= "JobAbility" and skill ~= "Jig" then
+--         delay = calculateDelay(castTime, fastCastAmount)/1000
+--     end
 
-    -- Log Fast Cast information
-    logFastCastInfo(spell, castTime, fastCastAmount, delay)
+--     -- Log Fast Cast information
+--     logFastCastInfo(spell, castTime, fastCastAmount, delay)
 
 
-    -- Execute cancel command
-    executeCancel(actualBuff, delay, buff and "Buff Parameter Sent" or "Spell")
-end
+--     -- Execute cancel command
+--     executeCancel(actualBuff, delay, buff and "Buff Parameter Sent" or "Spell")
+-- end
 
 if not tlp.settings.user.silentLoad then
     if tlp.actions then
