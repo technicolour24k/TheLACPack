@@ -34,12 +34,14 @@ end
 -- Helper function to calculate delay
 local function calculateDelay(castTime, fastCastAmount)
     if fastCastAmount <= 0 then
-        return castTime -- No Fast Cast, so cancel at the end of the cast time
+        return castTime *0.9 -- No Fast Cast, so cancel at the end of the cast time
     end
 
     local fastCastMultiplier = ((100 - fastCastAmount) / 100) * 0.3
     local delayToCancel = castTime - (castTime * fastCastMultiplier)
-    return delayToCancel
+    delayToCancel = delayToCancel - (castTime * 0.1)
+
+    return math.max(0, delayToCancel) -- Make sure we get the highest cancellation delay
 end
 
 
@@ -47,7 +49,7 @@ end
 local function logFastCastInfo(spell, castTime, fastCastAmount, delay, buff)
         tlp.logging.debug(string.format(
             "[FastCastInfo] Spell: %s, Base Cast Time: %.2fs, Fast Cast: %d%%, Delay to Cancel: %.2fs, Buff: %s",
-            spell, castTime, fastCastAmount, delay, buff
+            spell, castTime/1000, fastCastAmount, delay, buff
         ))
 end
 
