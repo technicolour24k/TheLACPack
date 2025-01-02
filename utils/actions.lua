@@ -38,10 +38,10 @@ local function calculateDelay(castTime, fastCastAmount)
 end
 
 -- Helper function for logging Fast Cast information
-local function logFastCastInfo(spell, castTime, fastCastAmount, delay)
+local function logFastCastInfo(spell, castTime, fastCastAmount, delay, buff)
         tlp.logging.debug(string.format(
-            "[FastCastInfo] Spell: %s, Base Cast Time: %.2fs, Fast Cast: %d%%, Delay to Cancel: %.2fs",
-            spell, castTime, fastCastAmount, delay
+            "[FastCastInfo] Spell: %s, Base Cast Time: %.2fs, Fast Cast: %d%%, Delay to Cancel: %.2fs, Buff: %s",
+            spell, castTime, fastCastAmount, delay, buff
         ))
 end
 
@@ -67,17 +67,18 @@ tlp.actions.cancelBuff = function(spell, castTime, fastCastAmount, buff, skill)
         return
     end
 
+    -- Determine the actual buff to cancel
+    local actualBuff = buff or spell
+
     -- Calculate delay based on Fast Cast and skill type
     local delay = 0
     if skill ~= "JobAbility" and skill ~= "Jig" then
-        delay = calculateDelay(castTime, fastCastAmount)
+        delay = calculateDelay(castTime, fastCastAmount)/1000
     end
 
     -- Log Fast Cast information
     logFastCastInfo(spell, castTime, fastCastAmount, delay)
 
-    -- Determine the actual buff to cancel
-    local actualBuff = buff or spell
 
     -- Execute cancel command
     executeCancel(actualBuff, delay, buff and "Buff Parameter Sent" or "Spell")
