@@ -51,5 +51,7 @@ tlp.logging.debug = function(msg,col)
 end
 
 if tlp.logging then
-    gFunc.Echo(143, "[TLP Load] TheLACPack Logging loaded successfully.")
+    if not tlp.settings.user.silentLoad then
+        gFunc.Echo(143, "[TLP Load] TheLACPack Logging loaded successfully.")
+    end
 end
