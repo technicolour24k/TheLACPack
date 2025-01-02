@@ -34,12 +34,12 @@ end
 -- Helper function to calculate delay
 local function calculateDelay(castTime, fastCastAmount)
     if fastCastAmount <= 0 then
-        return castTime *0.9 -- No Fast Cast, so cancel at the end of the cast time
+        return castTime * (1-tlp.settings.user.cancellationMargin) -- No Fast Cast, so cancel at the end of the cast time
     end
 
     local fastCastMultiplier = ((100 - fastCastAmount) / 100) * 0.3
     local delayToCancel = castTime - (castTime * fastCastMultiplier)
-    delayToCancel = delayToCancel - (castTime * 0.1)
+    delayToCancel = delayToCancel - (castTime * tlp.settings.user.cancellationMargin)
 
     return math.max(0, delayToCancel) -- Make sure we get the highest cancellation delay
 end
