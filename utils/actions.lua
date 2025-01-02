@@ -33,9 +33,15 @@ end
 
 -- Helper function to calculate delay
 local function calculateDelay(castTime, fastCastAmount)
+    if fastCastAmount <= 0 then
+        return castTime -- No Fast Cast, so cancel at the end of the cast time
+    end
+
     local fastCastMultiplier = ((100 - fastCastAmount) / 100) * 0.3
-    return castTime * fastCastMultiplier
+    local delayToCancel = castTime - (castTime * fastCastMultiplier)
+    return delayToCancel
 end
+
 
 -- Helper function for logging Fast Cast information
 local function logFastCastInfo(spell, castTime, fastCastAmount, delay, buff)
@@ -47,7 +53,7 @@ end
 
 -- Helper function to execute cancel command
 local function executeCancel(spellOrBuff, delay, typeInfo)
-    tlp.world.wait(delay)
+    tlp.utils.wait(delay)
     tlp.world.sendCommand('/cancel ' .. spellOrBuff)
     tlp.logging.debug(string.format("Cancelled %s after %.2fs [%s]", spellOrBuff, delay, typeInfo))
 end
