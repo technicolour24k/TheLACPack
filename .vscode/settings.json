@@ -3,6 +3,7 @@
         "gFunc",
         "gSettings",
         "gData",
-        "AshitaCore"
+        "AshitaCore",
+        "tlp"
     ]
 }

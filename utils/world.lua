@@ -36,7 +36,7 @@ tlp.world.clearStatuses = function()
     for _, item in ipairs(statusItems) do
         for _, status in ipairs(item.statuses) do
             if tlp.world.buffActive(status) then
-                tlp.logging.debug(string.format("[TLP] Found active status: %s. Using item: %s.", tatus, item.name))
+                tlp.logging.debug(string.format("[TLP] Found active status: %s. Using item: %s.", status, item.name))
                 tlp.world.sendCommand(string.format('/item "%s" <me>', item.name))
                 break -- Stop checking further statuses for this item
             end
