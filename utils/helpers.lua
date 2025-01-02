@@ -4,7 +4,7 @@
 
 tlp = tlp or {}
 tlp.helpers = tlp.helpers or {}
-
+gFunc.Echo(143, "v0.1")
 tlp.helpers.debugEnabled = function()
     if (gSettings.Debug) then
 		return true
