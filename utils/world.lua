@@ -22,12 +22,12 @@ end
 
 tlp.xi.world.clearStatuses = function()
     -- Fail-safe: Ensure this only runs if enabled in config
-    if not tlp.xi.settings.user.oneClickRemedies then
+    if not tlp.settings.user.oneClickRemedies then
         return
     end
 
     -- Get remedy items from user settings
-    local statusItems = tlp.xi.settings.user.statusItems
+    local statusItems = tlp.settings.user.statusItems
     if not statusItems then
         gFunc.Echo(68, "[TLP.xi Warning] No remedy items configured in user settings.")
         return

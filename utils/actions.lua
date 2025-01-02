@@ -35,12 +35,12 @@ end
 -- Helper function to calculate delay
 local function calculateDelay(castTime, fastCastAmount)
     if fastCastAmount <= 0 then
-        return castTime * (1-tlp.xi.settings.cancellationMargin) -- No Fast Cast, so cancel at the end of the cast time
+        return castTime * (1-tlp.settings.cancellationMargin) -- No Fast Cast, so cancel at the end of the cast time
     end
 
     local fastCastMultiplier = ((100 - fastCastAmount) / 100) * 0.3
     local delayToCancel = castTime - (castTime * fastCastMultiplier)
-    delayToCancel = delayToCancel - (castTime * tlp.xi.settings.user.cancellationMargin)
+    delayToCancel = delayToCancel - (castTime * tlp.settings.user.cancellationMargin)
 
     return math.max(0, delayToCancel) -- Make sure we get the highest cancellation delay
 end
@@ -71,7 +71,7 @@ tlp.xi.actions.cancelBuff = function(spell, castTime, fastCastAmount, buff, skil
     end
 
     -- Fetch the user-defined autoCancelList
-    local autoCancelList = tlp.xi.settings.user.autoCancelList
+    local autoCancelList = tlp.settings.user.autoCancelList
     if not autoCancelList or not tlp.xi.utils.itemInArray(autoCancelList, spell) then
         return
     end
