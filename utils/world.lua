@@ -46,6 +46,6 @@ end
 
 if not tlp.settings.user.silentLoad then
     if tlp.world then
-        gFunc.Echo(143, "[TLP Load] TheLACPack Action Utilities loaded successfully.")
+        gFunc.Echo(143, "[TLP Load] TheLACPack Game World Utilities loaded successfully.")
     end
 end
