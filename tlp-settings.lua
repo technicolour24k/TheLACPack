@@ -24,5 +24,10 @@ tlp.settings.user = tlp.settings.user or {
         } }
     },
     blockEnemyImmunities = true, -- Default: true, actively try to stop casting against things that are immune
+    autoCancelList = {  -- List of buffs to be automatically cancelled
+        "Enstone", "Enwater", "Enaero", "Enfire", "Enblizzard", "Enthunder",
+        "Stoneskin", "Blaze Spikes", "Ice Spikes", "Shock Spikes", "Sneak", "Spectral Jig"
+    },
+    cancellationMargin = 0.2, -- This is a multiplier for the amount of extra margin to give the tlp.actions.cancelBuff function. 0.2 = Cancelling at 80% 0.4 = 60%, 0.5 = 50%, etc
 }
 
