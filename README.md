@@ -4,7 +4,7 @@
 
 To use **TheLACPack**, follow these steps:
 
-1. Download the `bootstrap.lua` file from this repository.
+1. Download the `bootstrap.lua` and `tlp-settings.lua` file from this repository.
 2. Place it in your `AshitaV4/config/addons/luashitacast/` folder.
 
 Your folder structure should look like this:
@@ -16,6 +16,7 @@ Ashita V4/
 ---- You_YourID/
 ----- SMN.lua
 ---- bootstrap.lua
+---- tlp-settings.lua
 
 ```
 
