@@ -52,6 +52,7 @@ end
 
 if tlp.logging then
     if not tlp.settings.user.silentLoad then
+        tlp.logging.info(tlp.settings.user.silentLoad)
         gFunc.Echo(143, "[TLP Load] TheLACPack Logging loaded successfully.")
     end
 end
