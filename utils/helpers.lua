@@ -24,5 +24,7 @@ end
 
 
 if tlp.helpers then
-    gFunc.Echo(143, "[TLP Load] TheLACPack Helpers loaded successfully.")
+    if not tlp.settings.user.silentLoad then
+        gFunc.Echo(143, "[TLP Load] TheLACPack Helpers loaded successfully.")
+    end
 end

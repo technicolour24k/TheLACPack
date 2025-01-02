@@ -10,3 +10,10 @@ tlp.utils.colourTest = function()
         gFunc.Echo(i, "Colour test: "..i)
     end
 end
+
+
+if tlp.utils then
+    if not tlp.settings.user.silentLoad then
+        gFunc.Echo(143, "[TLP Load] TheLACPack Utilities loaded successfully.")
+    end
+end
