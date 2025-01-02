@@ -31,6 +31,58 @@ tlp.actions.enemyImmunityCheck = function(mob, spell)
 end
 
 
+-- Helper function to calculate delay
+local function calculateDelay(castTime, fastCastAmount)
+    local fastCastMultiplier = ((100 - fastCastAmount) / 100) * 0.3
+    return castTime * fastCastMultiplier
+end
+
+-- Helper function for logging Fast Cast information
+local function logFastCastInfo(spell, castTime, fastCastAmount, delay)
+        tlp.logging.debug(string.format(
+            "[FastCastInfo] Spell: %s, Base Cast Time: %.2fs, Fast Cast: %d%%, Delay to Cancel: %.2fs",
+            spell, castTime, fastCastAmount, delay
+        ))
+end
+
+-- Helper function to execute cancel command
+local function executeCancel(spellOrBuff, delay, typeInfo)
+    tlp.world.wait(delay)
+    tlp.world.sendCommand('/cancel ' .. spellOrBuff)
+    tlp.logging.debug(string.format("Cancelled %s after %.2fs [%s]", spellOrBuff, delay, typeInfo))
+end
+
+-- Main function
+tlp.actions.cancelBuff = function(spell, castTime, fastCastAmount, buff, skill)
+    fastCastAmount = fastCastAmount or gSettings.FastCast
+    -- Validate inputs
+    if not spell or not castTime or not fastCastAmount then
+        tlp.logging.error("Invalid parameters passed to cancelBuff function.")
+        return
+    end
+
+    -- Fetch the user-defined autoCancelList
+    local autoCancelList = tlp.settings.user.autoCancelList
+    if not autoCancelList or not tlp.utils.itemInArray(autoCancelList, spell) then
+        return
+    end
+
+    -- Calculate delay based on Fast Cast and skill type
+    local delay = 0
+    if skill ~= "JobAbility" and skill ~= "Jig" then
+        delay = calculateDelay(castTime, fastCastAmount)
+    end
+
+    -- Log Fast Cast information
+    logFastCastInfo(spell, castTime, fastCastAmount, delay)
+
+    -- Determine the actual buff to cancel
+    local actualBuff = buff or spell
+
+    -- Execute cancel command
+    executeCancel(actualBuff, delay, buff and "Buff Parameter Sent" or "Spell")
+end
+
 if not tlp.settings.user.silentLoad then
     if tlp.actions then
         gFunc.Echo(143, "[TLP Load] TheLACPack Action Utilities loaded successfully.")
