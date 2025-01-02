@@ -34,6 +34,10 @@ tlp.utils.wait = function(time)
 	return true
 end
 
+tlp.utils.getSettings = function()
+    Settings = tlp.settings.user
+end
+
 
 if not tlp.settings.user.silentLoad then
     if tlp.utils then

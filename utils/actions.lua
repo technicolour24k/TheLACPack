@@ -35,7 +35,7 @@ end
 -- Helper function to calculate delay
 local function calculateDelay(castTime, fastCastAmount)
     if fastCastAmount <= 0 then
-        return castTime * (1-tlp.xi.settings.user.cancellationMargin) -- No Fast Cast, so cancel at the end of the cast time
+        return castTime * (1-tlp.xi.settings.cancellationMargin) -- No Fast Cast, so cancel at the end of the cast time
     end
 
     local fastCastMultiplier = ((100 - fastCastAmount) / 100) * 0.3
@@ -93,7 +93,7 @@ tlp.xi.actions.cancelBuff = function(spell, castTime, fastCastAmount, buff, skil
     executeCancel(actualBuff, delay, buff and "Buff Parameter Sent" or "Spell")
 end
 
-if not tlp.xi.settings.user.silentLoad then
+if not Settings.silentLoad then
     if tlp.xi.actions then
         gFunc.Echo(143, "[TLP.xi Load] TheLACPack Action Utilities loaded successfully.")
     end
