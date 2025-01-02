@@ -12,23 +12,23 @@ tlp.actions.spellContains = function(spell, contains)
     return string.find(spell:lower(), contains:lower()) ~= nil
 end
 
-tlp.actions.enemyImmunityCheck = function(mob, spell)
-    local immunities = tlp.data.enemyImmunities[mob]
+-- tlp.actions.enemyImmunityCheck = function(mob, spell)
+--     local immunities = tlp.data.enemyImmunities[mob]
 
-    -- No immunities defined for this mob
-    if not immunities then
-        return
-    end
+--     -- No immunities defined for this mob
+--     if not immunities then
+--         return
+--     end
 
-    -- Check if the spell matches any immunity
-    for _, immunity in ipairs(immunities) do
-        if tlp.utils.spellContains(spell, immunity) then
-            tlp.logging.info(string.format("[TLP] %s is immune to %s. Cancelling spell.", mob, immunity))
-            gFunc.CancelAction()
-            return
-        end
-    end
-end
+--     -- Check if the spell matches any immunity
+--     for _, immunity in ipairs(immunities) do
+--         if tlp.utils.spellContains(spell, immunity) then
+--             tlp.logging.info(string.format("[TLP] %s is immune to %s. Cancelling spell.", mob, immunity))
+--             gFunc.CancelAction()
+--             return
+--         end
+--     end
+-- end
 
 
 -- Helper function to calculate delay
