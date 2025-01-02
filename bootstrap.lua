@@ -64,7 +64,13 @@ end
 -- Load core framework files
 fetch_and_load("utils/helpers.lua")
 fetch_and_load("utils/utils.lua")
+fetch_and_load("utils/actions.lua")
+fetch_and_load("utils/world.lua")
 fetch_and_load("utils/logging.lua")
+
+-- Load data files
+fetch_and_load("data/enemy-immunities.lua")
+
 
 -- Expose fetch_and_load to profiles
 return {

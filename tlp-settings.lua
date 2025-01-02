@@ -8,6 +8,21 @@ tlp.settings.config = tlp.settings.config or {
 }
 
 tlp.settings.user = tlp.settings.user or {
-    silentLoad = true  -- Default: Show loading messages
+    silentLoad = false,  -- Default: false, always show loading messages
+    oneClickRemedies = true, -- Default: true, enable one-button status removals
+    statusItems = {
+        { name = "Holy Water", statuses = { "Curse", "Doom" } },
+        { name = "Hallowed Water", statuses = { "Curse", "Doom" } },
+        { name = "Remedy", statuses = { "Blind", "Paralysis", "Silence", "Poison" } },
+        { name = "Rmdy. Ointment", statuses = { "Disease", "Plague" } },
+        { name = "Panacea", statuses = { 
+            "Bind", "Bio", "Burn", "Choke", "Dia", "Flash", 
+            "Frost", "Gravity", "Rasp", "Slow", "Stun", "Weight", 
+            "Attack Down", "Defense Down", "STR Down", "AGI Down", 
+            "DEX Down", "VIT Down", "INT Down", "MND Down", 
+            "Max HP Down", "Max MP Down" 
+        } }
+    },
+    blockEnemyImmunities = true, -- Default: true, actively try to stop casting against things that are immune
 }
 
