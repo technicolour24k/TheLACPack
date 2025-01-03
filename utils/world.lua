@@ -12,10 +12,10 @@ end
 
 tlp.xi.world.buffActive = function(buff)
     if (gData.GetBuffCount(buff) >0) then
-		tlp.xi.logging.debug("Buff found: "..buff)
+		tlp.logging.debug("Buff found: "..buff)
         return true
     else
-		tlp.xi.logging.debug("Buff not found: "..buff)
+		tlp.logging.debug("Buff not found: "..buff)
         return false
     end
 end
@@ -37,7 +37,7 @@ tlp.xi.world.clearStatuses = function()
     for _, item in ipairs(statusItems) do
         for _, status in ipairs(item.statuses) do
             if tlp.xi.world.buffActive(status) then
-                tlp.xi.logging.debug(string.format("[TLP] Found active status: %s. Using item: %s.", status, item.name))
+                tlp.logging.debug(string.format("[TLP] Found active status: %s. Using item: %s.", status, item.name))
                 tlp.xi.world.sendCommand(string.format('/item "%s" <me>', item.name))
                 break -- Stop checking further statuses for this item
             end

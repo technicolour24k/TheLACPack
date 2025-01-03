@@ -14,7 +14,12 @@ tlp.xi.actions.spellContains = function(spell, contains)
 end
 
 tlp.xi.actions.enemyImmunityCheck = function(mob, spell)
-    local immunities = tlp.xi.data.enemyImmunities[mob]
+    if not tlp.settings.user.blockEnemyImmunities then
+        tlp.logging.debug("[enemyImmunityCheck] tlp.settings.user.blockEnemyImmunities is false")
+        return
+    end
+
+    local immunities = tlp.data.enemyImmunities[mob]
 
     -- No immunities defined for this mob
     if not immunities then
@@ -23,8 +28,8 @@ tlp.xi.actions.enemyImmunityCheck = function(mob, spell)
 
     -- Check if the spell matches any immunity
     for _, immunity in ipairs(immunities) do
-        if tlp.xi.utils.spellContains(spell, immunity) then
-            tlp.xi.logging.info(string.format("[TLP.xi] %s is immune to %s. Cancelling spell.", mob, immunity))
+        if tlp.utils.spellContains(spell, immunity) then
+            tlp.logging.info(string.format("[TLP.xi] %s is immune to %s. Cancelling spell.", mob, immunity))
             gFunc.CancelAction()
             return
         end
@@ -48,7 +53,7 @@ end
 
 -- Helper function for logging Fast Cast information
 local function logFastCastInfo(spell, castTime, fastCastAmount, delay, buff)
-        tlp.xi.logging.debug(string.format(
+        tlp.logging.debug(string.format(
             "[FastCastInfo] Spell: %s, Base Cast Time: %.2fs, Fast Cast: %d%%, Delay to Cancel: %.2fs, Buff: %s",
             spell, castTime/1000, fastCastAmount, delay, buff
         ))
@@ -56,9 +61,9 @@ end
 
 -- Helper function to execute cancel command
 local function executeCancel(spellOrBuff, delay, typeInfo)
-    tlp.xi.utils.wait(delay)
+    tlp.utils.wait(delay)
     tlp.xi.world.sendCommand('/cancel ' .. spellOrBuff)
-    tlp.xi.logging.debug(string.format("Cancelled %s after %.2fs [%s]", spellOrBuff, delay, typeInfo))
+    tlp.logging.debug(string.format("Cancelled %s after %.2fs [%s]", spellOrBuff, delay, typeInfo))
 end
 
 -- Main function
@@ -66,13 +71,13 @@ tlp.xi.actions.cancelBuff = function(spell, castTime, fastCastAmount, buff, skil
     fastCastAmount = fastCastAmount or gSettings.FastCast
     -- Validate inputs
     if not spell or not castTime or not fastCastAmount then
-        tlp.xi.logging.error("Invalid parameters passed to cancelBuff function.")
+        tlp.logging.error("Invalid parameters passed to cancelBuff function.")
         return
     end
 
     -- Fetch the user-defined autoCancelList
     local autoCancelList = tlp.settings.user.autoCancelList
-    if not autoCancelList or not tlp.xi.utils.itemInArray(autoCancelList, spell) then
+    if not autoCancelList or not tlp.utils.itemInArray(autoCancelList, spell) then
         return
     end
 
