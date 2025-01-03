@@ -10,7 +10,7 @@ tlp.settings.config = tlp.settings.config or {
 tlp.settings.user = tlp.settings.user or {
     silentLoad = false,  -- Default: false, always show loading messages
     oneClickRemedies = true, -- Default: true, enable one-button status removals
-    statusItems = {
+    statusItems = { -- Items and the statuses they heal :D
         { name = "Holy Water", statuses = { "Curse", "Doom" } },
         { name = "Hallowed Water", statuses = { "Curse", "Doom" } },
         { name = "Remedy", statuses = { "Blind", "Paralysis", "Silence", "Poison" } },
