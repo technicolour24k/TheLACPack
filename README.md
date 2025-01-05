@@ -167,15 +167,3 @@ TLP provides robust logging capabilities to assist in monitoring and debugging y
    ```lua
    tlp.logging.debug("This is a debug message.")
    ```
-
----
-
-## Additional Resources
-
-For more information, visit the [TLP GitHub Repository](https://github.com/technicolour24k/TheLACPack) and explore detailed examples and advanced configurations.
-
-With TLP, you have the tools to create a seamless and efficient gameplay experience. Enjoy customizing and enhancing your Final Fantasy XI adventures!
-
-
-
-## Customising functionality
