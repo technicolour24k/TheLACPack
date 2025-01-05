@@ -17,10 +17,10 @@ tlp.settings.user = tlp.settings.user or {
         { name = "Rmdy. Ointment", statuses = { "Disease", "Plague" } },
         { name = "Panacea", statuses = { 
             "Bind", "Bio", "Burn", "Choke", "Dia", "Flash", 
-            "Frost", "Gravity", "Rasp", "Slow", "Stun", "Weight", 
-            "Attack Down", "Defense Down", "STR Down", "AGI Down", 
-            "DEX Down", "VIT Down", "INT Down", "MND Down", 
-            "Max HP Down", "Max MP Down" 
+            "Frost", "Gravity", "Rasp", "Slow", "Stun", "Weight",
+            "Attack Down", "Defense Down", "STR Down", "AGI Down",
+            "DEX Down", "VIT Down", "INT Down", "MND Down",
+            "Max HP Down", "Max MP Down"
         } }
     },
     blockEnemyImmunities = true, -- Default: true, actively try to stop casting against things that are immune
