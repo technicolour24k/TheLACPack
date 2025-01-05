@@ -30,5 +30,6 @@ setmetatable(tlp.xi.rules.midcast, {
     __call = function(self, sets, spell, skill)
         self.skill(sets, skill)
         self.spell(sets, spell)
+        tlp.xi.actions.cancelBuff(gData.GetAction().Name,gData.GetAction().CastTime, gSettings.FastCast)
     end
 })
