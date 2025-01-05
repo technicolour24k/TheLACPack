@@ -29,7 +29,7 @@ tlp.xi.world.clearStatuses = function()
     -- Get remedy items from user settings
     local statusItems = tlp.settings.user.statusItems
     if not statusItems then
-        gFunc.Echo(68, "[TLP.xi Warning] No remedy items configured in user settings.")
+        tlp.logging.error("No remedy items configured in user settings.")
         return
     end
 
@@ -37,7 +37,7 @@ tlp.xi.world.clearStatuses = function()
     for _, item in ipairs(statusItems) do
         for _, status in ipairs(item.statuses) do
             if tlp.xi.world.buffActive(status) then
-                tlp.logging.debug(string.format("[TLP] Found active status: %s. Using item: %s.", status, item.name))
+                tlp.logging.debug(string.format("Found active status: %s. Using item: %s.", status, item.name))
                 tlp.xi.world.sendCommand(string.format('/item "%s" <me>', item.name))
                 break -- Stop checking further statuses for this item
             end
@@ -47,8 +47,7 @@ end
 
 -- dayWeatherCheck documentation
 -- Checks the weather and day elements against the given element and returns match details.
---
--- @param ele: The element to check against the weather and day elements. 
+-- @param ele: The element to check against the weather and day elements.
 --             Must be one of: Fire, Earth, Water, Wind, Ice, Thunder, Light, Dark.
 -- @param skill: (Optional) The skill name being checked, used for debugging purposes.
 -- 
@@ -59,7 +58,6 @@ end
 --                    - 0 if no match.
 --                    - 1 if single weather matches.
 --                    - 2 if double weather matches.
---
 -- Example usage: 
 -- local result = tlp.xi.world.dayWeatherCheck(gData.GetAction().Element , gData.GetAction().Skill)
 -- if result.isWeatherMatch then

@@ -72,6 +72,10 @@ fetch_and_load("utils/logging.lua")
 fetch_and_load("data/enemy-immunities.lua")
 
 
+-- Load custom overrides. This has to be the last thing otherwise your overrides won't take effect.
+gFunc.LoadFile("../tlp-overrides.lua")
+gFunc.LoadFile("../custom-functions.lua")
+
 -- Expose fetch_and_load to profiles
 return {
     fetch_and_load = fetch_and_load
