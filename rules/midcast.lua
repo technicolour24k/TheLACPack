@@ -9,16 +9,16 @@ tlp.xi.rules.midcast = tlp.xi.rules.midcast or {}
 
 tlp.xi.rules.midcast = {
     spell = function(sets, spell)
-        if sets[spell] then
-            gFunc.EquipSet(sets[spell])
+        if sets.midcast[spell] then
+            gFunc.EquipSet(sets.midcast[spell])
         else
             tlp.logging.debug(string.format("Set not found: sets[%s]", spell))
         end
     end,
 
     skill = function(sets, skill)
-        if sets[skill] then
-            gFunc.EquipSet(sets[skill])
+        if sets.midcast[skill] then
+            gFunc.EquipSet(sets.midcast[skill])
         else
             tlp.logging.debug(string.format("Set not found: sets[%s]", skill))
         end
