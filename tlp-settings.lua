@@ -9,6 +9,7 @@ tlp.settings.config = tlp.settings.config or {
 
 tlp.settings.user = tlp.settings.user or {
     silentLoad = false ,  -- Default: false, always show loading messages
+    forceRefresh = false, -- Default: false, don't force a redownload of TheLACPack
     oneClickRemedies = true, -- Default: true, enable one-button status removals. Call with `tlp.xi.world.clearStatuses`
     statusItems = { -- Items and the statuses they heal :D
         { name = "Holy Water", statuses = { "Curse", "Doom" } },

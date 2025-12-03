@@ -4,16 +4,18 @@
 
 # TheLACPack (TLP) Guide
 
-Welcome to TheLACPack (TLP), a powerful framework designed to enhance your experience with Luashitacast in Final Fantasy XI. With TLP, you have the tools to create a seamless and efficient gameplay setup, allowing for unparalleled customization and control. This guide will walk you through its installation, settings, custom functionality, and override features.
+Welcome to TheLACPack (TLP), a powerful framework designed to enhance your experience with Luashitacast in Final Fantasy XI. With TLP, you have the tools to create a seamless and efficient gameplay setup, allowing for unparalleled customisation and control. This guide will walk you through its installation, settings, custom functionality, and override features.
 
 ---
 
 To use **TheLACPack**, follow these steps:
 
-1. Download the `bootstrap.lua`, `tlp-settings.lua`, `tlp-overrides`, and `custom-functions` file from this repository.
+1. Download the `bootstrap.lua`, `tlp-settings.lua`, `tlp-overrides.lua`, and `custom-functions.lua` files from this repository.
 2. Place it in your `AshitaV4/config/addons/luashitacast/` folder.
+3. Download the `lfs.zip` file from this repository.
+4. Extract it to your `AshitaV4/addons/libs/` folder.
 
-Your folder structure should look like this:
+Your folder structures should look like this:
 
 ```
 AshitaV4/
@@ -26,6 +28,16 @@ AshitaV4/
          ├── tlp-settings.lua
          ├── tlp-overrides.lua
          └── custom-functions.lua
+```
+```
+AshitaV4/
+└─ addons/
+   └─ libs/
+      └─ lfs/
+         ├── .luacheckrc
+         ├── lfs.lua
+         ├── lfs_ffi.lua
+         └── lfs_spec.lua
 ```
 
 Then, at the top of your **Luashitacast** profile file (e.g., `SMN.lua`), add the following line:
@@ -40,7 +52,7 @@ gFunc.LoadFile("../bootstrap.lua")
 
 ### Overview
 
-TLP’s configuration is managed through the `tlp-settings.lua` file. This file contains options to control core functionality and customize your gameplay experience.
+TLP’s configuration is managed through the `tlp-settings.lua` file. This file contains options to control core functionality and customise your gameplay experience.
 
 ### Key Settings
 
@@ -52,7 +64,7 @@ TLP’s configuration is managed through the `tlp-settings.lua` file. This file 
    ```
 
 2. **User Preferences:**
-   Customize behaviors like silent loading and automatic actions:
+   Customise behaviors like silent loading and automatic actions:
 
    ```lua
    tlp.settings.user = {
