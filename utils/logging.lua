@@ -51,7 +51,7 @@ end
 --
 -- Example usage:
 -- tlp.logging.debug("Looking for the Shadow Lord!", 5) -- Displays "[Debug] Looking for the Shadow Lord!" in colour 5.
--- tlp.logging.debug("Default colour message") -- Displays "[Debug] Default colour message" in colour 68.
+-- tlp.logging.debug("Default colour message") -- Displays "[Debug] Default colour message" in colour 3.
 -------------------------------------------------------------------------------
 tlp.logging.debug = function(msg,col)
     if tlp.helpers.debugEnabled() then
